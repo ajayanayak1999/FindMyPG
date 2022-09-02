@@ -1,0 +1,21 @@
+﻿using AutoMapper;
+using FindMyPG.Core.Entities;
+using FindMyPG.Models;
+
+namespace FindMyPG.Infrastracture.Mappers
+{
+    public class MapperProfile :Profile
+    {
+        public MapperProfile()
+        {
+            CreateMap<State, StateModel>();
+            CreateMap<City, CityModel>()
+                .ForMember(dest=>dest.CityName,opt=>opt.MapFrom(src=>src.Name));
+            CreateMap<StateModelRequest, State>()
+                .ForMember(dest=>dest.Name,opt=>opt.MapFrom(src=>src.StateName));
+            CreateMap<CityModelRequest, City>()
+                .ForMember(dest=>dest.Name,opt=>opt.MapFrom(src=>src.CityName));
+            CreateMap<ZipCode, ZipCodeModel>();
+        }
+    }
+}
